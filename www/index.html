@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzeda | DevOps & Front End</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/mustache@4.2.0/mustache.js"></script>
+
+    <link rel="stylesheet" href="./styles.css">
+
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Gabriel Uzeda</a>
+            <div class="menu-toggle" id="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#experience">Experiência</a></li>
+                <li><a href="#certificates">Certificados</a></li>
+                <li><a href="#recommendations">Recomendações</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="/api/placeholder/400/400" alt="Foto de Perfil" class="profile-img">
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">Seu Nome</h1>
+                    <h2 class="hero-subtitle">DevOps & Desenvolvedor Front End</h2>
+                    <p class="hero-description">Especialista em automação de infraestrutura e desenvolvimento de interfaces de alta performance. Com experiência em diversas tecnologias de ponta, combinando o melhor dos dois mundos: confiabilidade operacional e experiências de usuário impactantes.</p>
+                    <a href="#contact" class="cta-btn">Entre em Contato</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experiência Profissional</h2>
+            <div class="experience-timeline">
+                <div class="timeline-line"></div>
+                <script id="experience-template" type="text/template">
+                    {{#items}}
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">{{period}}</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">{{title}}</h3>
+                            <div class="timeline-company">{{company}}</div>
+                            <p>{{description}}</p>
+                        </div>
+                    </div>
+                    {{/items}}
+                </script>
+                <div id="experience-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates">
+        <div class="container">
+            <h2 class="section-title">Certificados</h2>
+            <div class="certificates-grid">
+                <script id="certificates-template" type="text/template">
+                    {{#items}}
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="{{image}}" alt="{{title}}">
+                        </div>
+                        <div class="certificate-content">
+                            <h3 class="certificate-title">{{title}}</h3>
+                            <div class="certificate-issuer">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                                {{issuer}}
+                            </div>
+                            <p class="certificate-date">{{date}}</p>
+                        </div>
+                    </div>
+                    {{/items}}
+                </script>
+                <div id="certificates-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recommendations">
+        <div class="container">
+            <h2 class="section-title">Recomendações</h2>
+            <div class="recommendations-slider">
+                <div class="recommendations-container">
+                    <script id="recommendations-template" type="text/template">
+                        {{#items}}
+                        <div class="recommendation-card">
+                            <div class="recommendation-content">
+                                {{content}}
+                            </div>
+                            <div class="recommendation-author">
+                                <div class="author-avatar">
+                                    <img src="{{author.image}}" alt="{{author.name}}">
+                                </div>
+                                <div class="author-info">
+                                    <h4>{{author.name}}</h4>
+                                    <p>{{author.position}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/items}}
+                    </script>
+                    <div id="recommendations-container"></div>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-index="0"></div>
+                    <div class="slider-dot" data-index="1"></div>
+                    <div class="slider-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfólio de Projetos</h2>
+            <div class="portfolio-grid">
+                <script id="portfolio-template" type="text/template">
+                    {{#items}}
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">
+                            <img src="{{image}}" alt="{{title}}">
+                            <div class="portfolio-overlay">
+                                <h3 class="portfolio-title">{{title}}</h3>
+                                <p class="portfolio-category">{{category}}</p>
+                                <a href="#" class="portfolio-link">Ver projeto</a>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <p class="portfolio-description">{{description}}</p>
+                            <div class="portfolio-tags">
+                                {{#tags}}
+                                <span class="portfolio-tag">{{.}}</span>
+                                {{/tags}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/items}}
+                </script>
+                <div id="portfolio-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">SeuNome</div>
+                    <p class="footer-text">Especialista em DevOps e Desenvolvimento Frontend, combinando automação de infraestrutura com experiências de usuário de alta qualidade.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 8.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V22c-2.2.4-2.7-1-.3-1.2l.5-.1c.7-.2 1.3-.5 1.8-1 .5-.5.7-1.2.7-1.8 0-.9-.3-1.7-1-2.3-.6-.6-1.4-1-2.3-1-.9 0-1.7.3-2.3 1-.6.6-1 1.4-1 2.3 0 .8.2 1.5.7 2 .4.5 1 .8 1.6.9-1.6 0-3-1.3-3-3 0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.7-1.3 3-3 3-1.2 0-2.2-.6-2.7-1.6-.1-.1-.1-.2-.2-.3-.3-.5-.4-1.1-.4-1.6 0-1.1.4-2 1.2-2.8.8-.8 1.7-1.2 2.8-1.2 1.1 0 2 .4 2.8 1.2.8.8 1.2 1.7 1.2 2.8 0 1.5-.6 2.8-1.6 3.7-1 .9-2.3 1.4-3.7 1.4h-.2c-.1 0-.1 0-.2.1-.1.1-.1.1-.1.2v1c0 .2.1.4.5.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.3-3.7-7.9-8.1-7.9z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.25A9.75 9.75 0 0 0 2.25 12c0 4.97 3.33 9.17 7.88 10.45.58.1.78-.26.78-.57 0-.28 0-1.04-.02-2.03-3.2.7-3.88-1.53-3.88-1.53-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.56-.29-5.24-1.28-5.24-5.7 0-1.25.45-2.28 1.18-3.09-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.15 1.18.92-.26 1.9-.38 2.88-.39.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.09 0 4.43-2.69 5.41-5.26 5.69.41.35.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.2.68.79.56C18.42 21.16 21.75 17 21.75 12A9.75 9.75 0 0 0 12 2.25z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="#home">Início</a></li>
+                            <li><a href="#experience">Experiência</a></li>
+                            <li><a href="#certificates">Certificados</a></li>
+                            <li><a href="#recommendations">Recomendações</a></li>
+                            <li><a href="#portfolio">Portfólio</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contato</h4>
+                        <ul>
+                            <li><a href="mailto:email@exemplo.com">email@exemplo.com</a></li>
+                            <li><a href="tel:+5511999999999">+55 (11) 99999-9999</a></li>
+                            <li><a href="#">São Paulo, Brasil</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Tecnologias</h4>
+                        <ul>
+                            <li><a href="#">DevOps & Cloud</a></li>
+                            <li><a href="#">Frontend Development</a></li>
+                            <li><a href="#">CI/CD & Automation</a></li>
+                            <li><a href="#">UI/UX Design</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SeuNome. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </div>
+    <script src="./main.js"></script>
+
+</body>
+</html>
