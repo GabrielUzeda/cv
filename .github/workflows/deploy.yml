@@ -13,6 +13,19 @@ jobs:
       ACTIONS_STEP_DEBUG: true
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Listar arquivos no diretório
+        run: ls -la ./
+
+      - name: Verificar conexão SSH
+        run: |
+          echo "Testando conexão SSH ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
+          chmod 600 id_ed25519
+          ssh -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo Conexão bem-sucedida"
+
       - name: Copiar arquivos para a VM
         uses: appleboy/scp-action@v0.1.3
         with:
