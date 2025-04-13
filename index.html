@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Manutenção</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            background: linear-gradient(90deg, #fff, #8a8a8a, #fff);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1.5s ease-out forwards, shine 3s linear infinite;
+        }
+
+        p {
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.5s forwards;
+            color: #8a8a8a;
+            margin-bottom: 3rem;
+        }
+
+        .progress {
+            width: 200px;
+            height: 2px;
+            background-color: #333;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background-color: #fff;
+            animation: progress 1.5s ease-in-out infinite;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: blur(3px);
+            transform: translateZ(0);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @keyframes progress {
+            0% {
+                left: -30%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .sphere {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 30% 30%, rgba(100, 100, 100, 0.4), rgba(30, 30, 30, 0.1));
+            border-radius: 50%;
+            filter: blur(8px);
+            animation: rotate 12s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg) translateY(0px) scale(1);
+            }
+            33% {
+                transform: rotate(120deg) translateY(-30px) scale(1.1);
+            }
+            66% {
+                transform: rotate(240deg) translateY(20px) scale(0.9);
+            }
+            100% {
+                transform: rotate(360deg) translateY(0px) scale(1);
+            }
+        }
+
+        .glare {
+            display: none;
+            position: absolute;
+            width: 800px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+            transform: translateZ(0) rotate(-15deg);
+            animation: moveGlare 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveGlare {
+            0% {
+                transform: translateX(-400px) rotate(-15deg);
+            }
+            100% {
+                transform: translateX(200px) rotate(-15deg);
+            }
+        }
+
+        .ring {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform-style: preserve-3d;
+        }
+
+        .ring1 {
+            width: 600px;
+            height: 600px;
+            animation: spin 12s linear infinite;
+        }
+
+        .ring2 {
+            width: 800px;
+            height: 400px;
+            animation: spin 18s linear infinite reverse;
+        }
+
+        .ring3 {
+            width: 400px;
+            height: 800px;
+            animation: spin 15s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotateX(60deg) rotateZ(0);
+            }
+            100% {
+                transform: rotateX(60deg) rotateZ(360deg);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 4rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .progress {
+                width: 150px;
+            }
+
+            .sphere {
+                width: 300px;
+                height: 300px;
+            }
+
+            .ring1 {
+                width: 400px;
+                height: 400px;
+            }
+
+            .ring2 {
+                width: 600px;
+                height: 300px;
+            }
+
+            .ring3 {
+                width: 300px;
+                height: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .progress {
+                width: 120px;
+            }
+
+            .sphere {
+                width: 200px;
+                height: 200px;
+            }
+
+            .ring1 {
+                width: 300px;
+                height: 300px;
+            }
+
+            .ring2 {
+                width: 400px;
+                height: 200px;
+            }
+
+            .ring3 {
+                width: 200px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .progress {
+                width: 100px;
+            }
+
+            .sphere {
+                width: 150px;
+                height: 150px;
+            }
+
+            .ring1 {
+                width: 200px;
+                height: 200px;
+            }
+
+            .ring2 {
+                width: 300px;
+                height: 150px;
+            }
+
+            .ring3 {
+                width: 150px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glare"></div>
+    <div class="sphere"></div>
+    <div class="ring ring1"></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <h1>Em Manutenção</h1>
+        <p>Trabalhando para trazer algo extraordinário em breve.</p>
+        <div class="progress"></div>
+    </div>
+
+    <script>
+        // Criar partículas flutuantes
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 80;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Tamanho aleatório
+            const size = Math.random() * 4 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Posição aleatória
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            
+            // Opacidade aleatória
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+            
+            // Animação com duração e delay aleatórios
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
+            particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Criar elementos flutuantes maiores
+        const floatingElements = document.createElement('div');
+        floatingElements.classList.add('floating-elements');
+        document.body.appendChild(floatingElements);
+        
+        const colors = ['#444', '#666', '#888', '#aaa'];
+        
+        for (let i = 0; i < 12; i++) {
+            const element = document.createElement('div');
+            element.classList.add('element');
+            
+            // Tamanho aleatório maior
+            const size = Math.random() * 100 + 50;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            
+            // Posição aleatória
+            const x = Math.random() * (window.innerWidth + 200) - 100;
+            const y = Math.random() * (window.innerHeight + 200) - 100;
+            element.style.left = `${x}px`;
+            element.style.top = `${y}px`;
+            
+            // Cor aleatória
+            element.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Opacidade e blur aleatórios
+            element.style.opacity = Math.random() * 0.2 + 0.1;
+            element.style.filter = `blur(${Math.random() * 10 + 3}px)`;
+            
+            // Animação com duração e delay aleatórios
+            const duration = Math.random() * 20 + 10;
+            const delay = Math.random() * 5;
+            element.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+            
+            // Profundidade aleatória (z-index)
+            element.style.zIndex = Math.floor(Math.random() * 5) - 10;
+            
+            floatingElements.appendChild(element);
+        }
+
+        // Adiciona movimento 3D ao passar o mouse
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth - 0.5;
+            const y = e.clientY / window.innerHeight - 0.5;
+            
+            document.querySelector('.container').style.transform = `
+                translateX(${x * 20}px) 
+                translateY(${y * 20}px)
+                rotateX(${y * 5}deg)
+                rotateY(${-x * 5}deg)
+            `;
+            
+            document.querySelector('.sphere').style.transform = `
+                translateX(${x * 40}px) 
+                translateY(${y * 40}px)
+            `;
+        });
+    </script>
+</body>
+</html>
