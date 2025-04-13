@@ -13,10 +13,16 @@ jobs:
       ACTIONS_STEP_DEBUG: true
 
     steps:
+      - name: Validar formato da chave privada
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | grep "PRIVATE KEY" || echo "Chave privada não encontrada ou inválida"
+
       - name: Verificar conexão SSH
         run: |
           echo "Testando conexão SSH ${{ secrets.SSH_USER }} @${{ secrets.SSH_HOST }}"
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo Conexão bem-sucedida"
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
+          chmod 600 id_ed25519
+          ssh -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo Conexão bem-sucedida"
 
       - name: Copiar arquivos para a VM
         uses: appleboy/scp-action@v0.1.3
@@ -24,6 +30,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key_path: "id_ed25519"
           source: "."
           target: "/var/www/html"
           port: 22
