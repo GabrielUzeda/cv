@@ -33,5 +33,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./*"
+          exclude: "id_ed25519,.github,.git"
           target: "/var/www/html"
           port: 22
