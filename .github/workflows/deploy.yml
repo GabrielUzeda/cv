@@ -13,10 +13,6 @@ jobs:
       ACTIONS_STEP_DEBUG: true
 
     steps:
-      - name: Garantir permissões no destino
-        run: |
-          ssh -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sudo chmod -R 755 /var/www/html"
-
       - name: Copiar arquivos para a VM
         uses: appleboy/scp-action@v0.1.3
         with:
