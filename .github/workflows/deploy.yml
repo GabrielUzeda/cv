@@ -1,0 +1,21 @@
+name: Deploy para GCP via SSH
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  deploy:
+    runs-on: debian-latest
+
+    steps:
+      - name: Copiar arquivos para a VM
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: "/var/www/html"
+          port: 22
