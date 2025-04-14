@@ -1,7 +1,7 @@
 let curriculoData;
 
 // Load JSON data first
-$.getJSON('./data.json', function(data) {
+$.getJSON('../data/data.json', function(data) {
     curriculoData = data;
     initializeApp();
 }).fail(function(jqXHR, textStatus, errorThrown) {

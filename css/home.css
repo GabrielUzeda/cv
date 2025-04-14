@@ -315,12 +315,11 @@ section {
 }
 
 .timeline-item:nth-child(odd) .timeline-dot { /* Ímpar */
-    left: calc(50% - 8px); /* Centralizado na linha */
-    transform: translateX(calc(-100% - 30px + 8px)); /* Alinha à direita do item */
+    right: -8px; /* Centralizado na linha */
 }
 
 .timeline-item:nth-child(even) .timeline-dot { /* Par */
-    left: calc(50% - 8px); /* Centralizado na linha */
+    left: -8px; /* Centralizado na linha */
 }
 
 
