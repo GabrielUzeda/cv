@@ -138,21 +138,20 @@ function initializeApp() {
     });
 
     // Animação para recomendações - Animar o slider inteiro ao entrar na viewport
-     gsap.fromTo("#recommendations .recommendations-slider",
-           { opacity: 0, scale: 0.95 },
-           {
+    gsap.fromTo("#recommendations .recommendations-slider",
+        { opacity: 0, y: 30 },
+        {
             scrollTrigger: {
                 trigger: "#recommendations",
                 start: "top 80%",
                 once: true
             },
             opacity: 1,
-            scale: 1,
+            y: 0,
             duration: 0.7,
-            ease: "elastic.out(1, 0.7)"
-           }
-     );
-
+            ease: "power3.out"
+        }
+    );
 
     // Animação para projetos do portfólio
     gsap.utils.toArray(".portfolio-item").forEach((item, i) => {
@@ -221,74 +220,85 @@ function initializeApp() {
         // $('body').toggleClass('no-scroll', $(this).hasClass('active'));
     });
 
-    // Slider de recomendações
-    const initRecommendationsSlider = () => {
-        var currentSlide = 0;
-        var $slideContainer = $(".recommendations-container");
-        var $slides = $(".recommendation-card");
-        var slideCount = $slides.length;
-        var slideWidth = 100; // em percentagem
-        var autoSlideInterval;
-
+    // Recommendations slider functionality
+    function initRecommendationsSlider() {
+        const $container = $('.recommendations-container');
+        const $cards = $('.recommendation-card');
+        const totalSlides = $cards.length;
+        let currentSlide = 0;
+        
+        // Create dots
+        const $dotsContainer = $('.slider-dots');
+        for (let i = 0; i < totalSlides; i++) {
+            $dotsContainer.append(`<button class="dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Go to slide ${i + 1}"></button>`);
+        }
+        
+        // Set initial state
+        $cards.eq(0).addClass('active');
+        updateSliderState();
+        
+        // Event listeners
+        $('.prev-btn').on('click', () => navigate('prev'));
+        $('.next-btn').on('click', () => navigate('next'));
+        $('.dot').on('click', function() {
+            goToSlide($(this).data('index'));
+        });
+        
+        function navigate(direction) {
+            const newSlide = direction === 'next' 
+                ? (currentSlide + 1) % totalSlides 
+                : (currentSlide - 1 + totalSlides) % totalSlides;
+            goToSlide(newSlide);
+        }
+        
         function goToSlide(index) {
-            if(index >= slideCount) index = 0; // Volta para o primeiro
-            if(index < 0) index = slideCount - 1; // Vai para o último
-
+            // Remove active class from current slide
+            $cards.eq(currentSlide).removeClass('active');
+            $('.dot').eq(currentSlide).removeClass('active');
+            
+            // Update current slide
             currentSlide = index;
-            // Usando GSAP para a transição do slider para melhor controle e suavidade
-            gsap.to($slideContainer, {
-                 duration: 0.5, // Duração da animação
-                 xPercent: -slideWidth * currentSlide, // Move pelo percentual
-                 ease: "power2.inOut" // Easing
-            });
-
-            // Atualiza os dots
-            $(".slider-dot").removeClass("active");
-            $(`.slider-dot[data-index="${currentSlide}"]`).addClass("active");
+            
+            // Add active class to new slide
+            $cards.eq(currentSlide).addClass('active');
+            $('.dot').eq(currentSlide).addClass('active');
+            
+            // Transform container
+            const translateX = -(currentSlide * 100);
+            $container.css('transform', `translateX(${translateX}%)`);
+            
+            updateSliderState();
         }
-
-         function startAutoSlide() {
-            // Limpa intervalo anterior para evitar múltiplos timers
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(function() {
-                goToSlide(currentSlide + 1);
-            }, 7000); // Intervalo de 7 segundos
+        
+        function updateSliderState() {
+            // Update navigation buttons state
+            $('.prev-btn').prop('disabled', currentSlide === 0);
+            $('.next-btn').prop('disabled', currentSlide === totalSlides - 1);
         }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Inicializa o slider e o autoslide
-        if (slideCount > 1) { // Só ativa se houver mais de um slide
-            // Adiciona os dots dinamicamente se não existirem
-            if ($(".slider-controls .slider-dot").length === 0) {
-                const $controls = $(".slider-controls");
-                for (let i = 0; i < slideCount; i++) {
-                    $controls.append(`<div class="slider-dot" data-index="${i}"></div>`);
-                }
-                 // Adiciona classe 'active' ao primeiro dot criado
-                $controls.find('.slider-dot').first().addClass('active');
+        
+        // Auto-advance slides every 5 seconds
+        let autoplayInterval = setInterval(() => {
+            if (currentSlide < totalSlides - 1) {
+                navigate('next');
             } else {
-                 // Garante que o primeiro dot está ativo se já existirem
-                 $(".slider-dot").removeClass("active").first().addClass("active");
+                goToSlide(0);
             }
-
-
-            // Event listener para os dots
-            $(".slider-dot").on('click', function() {
-                stopAutoSlide(); // Para o autoslide ao clicar manualmente
-                var index = $(this).data('index');
-                goToSlide(index);
-                startAutoSlide(); // Reinicia o autoslide após interação manual
-            });
-
-             // Pausa no hover (opcional)
-            $(".recommendations-slider").hover(stopAutoSlide, startAutoSlide);
-
-            startAutoSlide(); // Inicia o autoslide
-        }
-    };
+        }, 5000);
+        
+        // Pause autoplay on hover
+        $('.recommendations-slider').hover(
+            () => clearInterval(autoplayInterval),
+            () => {
+                autoplayInterval = setInterval(() => {
+                    if (currentSlide < totalSlides - 1) {
+                        navigate('next');
+                    } else {
+                        goToSlide(0);
+                    }
+                }, 5000);
+            }
+        );
+    }
 
     // Inicializa o slider após renderizar os templates
     initRecommendationsSlider();
