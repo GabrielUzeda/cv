@@ -13,6 +13,7 @@
                     "title": "Iniciação Científica em Ciencia da computação",
                     "company": "UFG",
                     "description": "Desenvolvimento de aplicativo mobile em Flutter para integração de conteúdos didáticos, promovendo acesso à tecnologia para estudantes com infraestrutura limitada."
+
                 },
                 {
                     "period": "2021 -  2022",
@@ -31,6 +32,7 @@
                     "title": "Projeto Letramento Digital - Instrutor de computação",
                     "company": "INF/UFG",
                     "description": "Ministrei aulas de fundamentos de computação, segurança online e desenvolvimento web, promovendo inclusão digital em comunidades externas à universidade."
+
                 }
             ]
         },
@@ -40,9 +42,9 @@
         "recommendations": {
             "items": [
                 {
-                    "content": "Em 10 de abril de 2025, Gabriel era sênior em relação a mim, mas não me supervisionava diretamente. Tive o privilégio de trabalhar com Uzeda em um projeto onde, apesar do tempo curto, aprendi mais do que poderia imaginar. Ele é um profissional extremamente competente, dedicado e sempre muito solícito.\n\nDurante o tempo em que trabalhamos juntos, ele me ajudou a entender o funcionamento do projeto, me explicou decisões técnicas importantes e sempre esteve disponível para tirar dúvidas. Ao mesmo tempo, demonstrou muita paciência e cuidado ao ensinar. Sua combinação de conhecimento técnico e disposição para compartilhar esse conhecimento foi essencial para o meu desenvolvimento naquele período.\n\nRecomendo fortemente o trabalho do Uzeda — ele é uma referência tanto tecnicamente quanto como colega de equipe.",
+                    "content": "Tive o privilégio de trabalhar com Uzeda em um projeto onde, apesar do tempo curto, aprendi mais do que poderia imaginar. Ele é um profissional extremamente competente, dedicado e sempre muito solícito. Durante o tempo em que trabalhamos juntos, ele me ajudou a entender o funcionamento do projeto, me explicou decisões técnicas importantes e sempre esteve disponível para tirar dúvidas. Ao mesmo tempo, demonstrou muita paciência e cuidado ao ensinar. Sua combinação de conhecimento técnico e disposição para compartilhar esse conhecimento foi essencial para o meu desenvolvimento naquele período. Recomendo fortemente o trabalho do Uzeda — ele é uma referência tanto tecnicamente quanto como colega de equipe.",
                     "author": {
-                        "image": "",
+                        "image": "https://media.licdn.com/dms/image/v2/D4D03AQETzVGqJnGyiQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726080467150?e=1750896000&v=beta&t=SuM05IL68dgqfV6ezOzEqQ3Rf8C4jdtn5cP-VahEO1g",
                         "name": "Anderson Rigonatto",
                         "position": "Pesquisador de IA | Desenvolvedor de Software | Python | Machine Learning | React | Data Science"
                     }
@@ -52,51 +54,7 @@
         "portfolio": {
             "items": [
                 {
-                    "image": "https://via.placeholder.com/800x600?text=Letramento+Digital",
-                    "title": "Letramento Digital",
-                    "category": "Iniciativa Social",
-                    "description": "Projeto de inclusão digital promovendo capacitação em informática, segurança digital e desenvolvimento web para comunidades.",
-                    "tags": [
-                        "Inclusão Digital",
-                        "Google Tools",
-                        "Desenvolvimento Web"
-                    ]
-                },
-                {
-                    "image": "https://via.placeholder.com/800x600?text=Flappy+Corona",
-                    "title": "Flappy Corona",
-                    "category": "Jogo Mobile",
-                    "description": "Jogo desenvolvido em Flutter para entretenimento e bem-estar durante o isolamento da pandemia.",
-                    "tags": [
-                        "Flutter",
-                        "Dart",
-                        "UI/UX"
-                    ]
-                },
-                {
-                    "image": "https://via.placeholder.com/800x600?text=Rastreando+Juntos",
-                    "title": "Rastreando Juntos",
-                    "category": "Saúde / Tecnologia",
-                    "description": "Soluções de rastreamento de contatos desenvolvidas em equipe interdisciplinar para monitoramento durante a pandemia.",
-                    "tags": [
-                        "Flutter",
-                        "DevOps",
-                        "Interdisciplinar"
-                    ]
-                },
-                {
-                    "image": "https://via.placeholder.com/800x600?text=App+Didatico",
-                    "title": "App de Conteúdos Didáticos",
-                    "category": "Educação / Acessibilidade",
-                    "description": "Aplicativo em Flutter integrando conteúdos educacionais e promovendo acesso à tecnologia para estudantes com infraestrutura limitada.",
-                    "tags": [
-                        "Flutter",
-                        "Acessibilidade",
-                        "Iniciação Científica"
-                    ]
-                },
-                {
-                    "image": "https://via.placeholder.com/800x600?text=FUNAPE+DevOps",
+                    "image": "https://funape.org.br/novo/images/logo_site.png",
                     "title": "DevOps & Front-end na FUNAPE",
                     "category": "DevOps / Front-end",
                     "description": "Migração de aplicações bare-metal para contêineres Docker, implementação de alta disponibilidade e configuração de ferramentas de monitoramento.",
@@ -105,7 +63,57 @@
                         "HAProxy",
                         "Grafana",
                         "Nginx"
-                    ]
+                    ],
+                    "link":"https://funape.org.br"
+                },
+                {
+                    "image": "/assets/panaceia.jpg",
+                    "title": "Rastreando Juntos",
+                    "category": "Saúde / Tecnologia",
+                    "description": "Soluções de rastreamento de contatos desenvolvidas em equipe interdisciplinar para monitoramento durante a pandemia.",
+                    "tags": [
+                        "Flutter",
+                        "DevOps",
+                        "Interdisciplinar"
+                    ],
+                    "link":"/assets/panaceia.mp4"
+                },
+                {
+                    "image": "https://raw.githubusercontent.com/gsuzeda/FlappyCorona/master/screenshots/4.jpg",
+                    "title": "Flappy Corona",
+                    "category": "Jogo Mobile",
+                    "description": "Jogo desenvolvido em Flutter para entretenimento e bem-estar durante o isolamento da pandemia.",
+                    "tags": [
+                        "Flutter",
+                        "Dart",
+                        "UI/UX"
+                    ],
+                    "link":"https://github.com/gsuzeda/FlappyCorona"
+                },
+                {
+                    "image": "/assets/sed.png",
+                    "title": "App de Conteúdos Didáticos",
+                    "category": "Educação / Acessibilidade",
+                    "description": "Aplicativo em Flutter integrando conteúdos educacionais e promovendo acesso à tecnologia para estudantes com infraestrutura limitada.",
+                    "tags": [
+                        "Flutter",
+                        "Acessibilidade",
+                        "Iniciação Científica"
+                    ],
+                    "link":"https://www.youtube.com/watch?v=iPtFvOkvpOE"
+                },
+             
+                {
+                    "image": "http://inf.ufg.br/files/uploads/INF-03.png",
+                    "title": "Letramento Digital",
+                    "category": "Iniciativa Social",
+                    "description": "Projeto de inclusão digital promovendo capacitação em informática, segurança digital e desenvolvimento web para comunidades.",
+                    "tags": [
+                        "Inclusão Digital",
+                        "Google Tools",
+                        "Desenvolvimento Web"
+                    ],
+                    "link":"https://www.youtube.com/watch?v=iPtFvOkvpOE"
                 }
             ]
         }

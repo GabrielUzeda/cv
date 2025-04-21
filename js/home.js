@@ -233,6 +233,88 @@ function animateTimelineItems() {
         }
     });
 
+    // Tratamento de cliques nos links do portfólio
+    $(document).on('click', '.portfolio-overlay a, .portfolio-link', function(e) {
+        e.preventDefault();
+        const link = $(this).attr('href');
+        
+        if (!link) return; // Se não houver link, não faz nada
+        
+        // Se for um link externo (começa com http ou https)
+        if (link.startsWith('http') || link.startsWith('https')) {
+            window.open(link, '_blank');
+        } 
+        // Se for um arquivo local (começa com /)
+        else if (link.startsWith('/')) {
+            // Se for um vídeo (termina com .mp4)
+            if (link.endsWith('.mp4')) {
+                // Criar um modal para exibir o vídeo
+                const videoModal = $(`
+                    <div class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000;">
+                        <div style="position:relative; width:80%; max-width:800px; margin:50px auto;">
+                            <button class="close-modal" style="position:absolute; right:-40px; top:-40px; background:none; border:none; color:white; font-size:30px; cursor:pointer;">&times;</button>
+                            <video controls style="width:100%; border-radius:8px;">
+                                <source src="${link}" type="video/mp4">
+                                Seu navegador não suporta o elemento de vídeo.
+                            </video>
+                        </div>
+                    </div>
+                `);
+                
+                // Adicionar ao body e mostrar
+                $('body').append(videoModal);
+                videoModal.fadeIn();
+                
+                // Fechar modal ao clicar no botão ou fora do vídeo
+                videoModal.on('click', function(e) {
+                    if ($(e.target).is('.modal') || $(e.target).is('.close-modal')) {
+                        videoModal.fadeOut(function() {
+                            $(this).remove();
+                        });
+                    }
+                });
+
+                // Parar o vídeo quando o modal for fechado
+                videoModal.find('.close-modal').on('click', function() {
+                    const video = videoModal.find('video')[0];
+                    if (video) video.pause();
+                    videoModal.fadeOut(function() {
+                        $(this).remove();
+                    });
+                });
+            }
+            // Se for uma imagem
+            else if (link.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                // Criar um modal para exibir a imagem
+                const imageModal = $(`
+                    <div class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000;">
+                        <div style="position:relative; width:90%; max-width:1200px; margin:50px auto; text-align:center;">
+                            <button class="close-modal" style="position:absolute; right:-40px; top:-40px; background:none; border:none; color:white; font-size:30px; cursor:pointer;">&times;</button>
+                            <img src="${link}" alt="Imagem do projeto" style="max-width:100%; max-height:80vh; border-radius:8px;">
+                        </div>
+                    </div>
+                `);
+                
+                // Adicionar ao body e mostrar
+                $('body').append(imageModal);
+                imageModal.fadeIn();
+                
+                // Fechar modal ao clicar no botão ou fora da imagem
+                imageModal.on('click', function(e) {
+                    if ($(e.target).is('.modal') || $(e.target).is('.close-modal')) {
+                        imageModal.fadeOut(function() {
+                            $(this).remove();
+                        });
+                    }
+                });
+            }
+            // Para outros tipos de arquivo
+            else {
+                window.open(link, '_blank');
+            }
+        }
+    });
+
     // Toggle menu mobile
     $("#menu-toggle").on('click', function() {
         $(this).toggleClass("active");
