@@ -44,7 +44,7 @@
                 {
                     "content": "Tive o privilégio de trabalhar com Uzeda em um projeto onde, apesar do tempo curto, aprendi mais do que poderia imaginar. Ele é um profissional extremamente competente, dedicado e sempre muito solícito. Durante o tempo em que trabalhamos juntos, ele me ajudou a entender o funcionamento do projeto, me explicou decisões técnicas importantes e sempre esteve disponível para tirar dúvidas. Ao mesmo tempo, demonstrou muita paciência e cuidado ao ensinar. Sua combinação de conhecimento técnico e disposição para compartilhar esse conhecimento foi essencial para o meu desenvolvimento naquele período. Recomendo fortemente o trabalho do Uzeda — ele é uma referência tanto tecnicamente quanto como colega de equipe.",
                     "author": {
-                        "image": "https://media.licdn.com/dms/image/v2/D4D03AQETzVGqJnGyiQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726080467150?e=1750896000&v=beta&t=SuM05IL68dgqfV6ezOzEqQ3Rf8C4jdtn5cP-VahEO1g",
+                        "image": "/assets/recomendacoes/anderson.jpeg",
                         "name": "Anderson Rigonatto",
                         "position": "Pesquisador de IA | Desenvolvedor de Software | Python | Machine Learning | React | Data Science"
                     }
@@ -67,7 +67,7 @@
                     "link":"https://funape.org.br"
                 },
                 {
-                    "image": "/assets/panaceia.jpg",
+                    "image": "/assets/portifolio/panaceia.jpg",
                     "title": "Rastreando Juntos",
                     "category": "Saúde / Tecnologia",
                     "description": "Soluções de rastreamento de contatos desenvolvidas em equipe interdisciplinar para monitoramento durante a pandemia.",
@@ -76,7 +76,7 @@
                         "DevOps",
                         "Interdisciplinar"
                     ],
-                    "link":"/assets/panaceia.mp4"
+                    "link":"/assets/portifolio/panaceia.mp4"
                 },
                 {
                     "image": "https://raw.githubusercontent.com/gsuzeda/FlappyCorona/master/screenshots/4.jpg",
@@ -91,7 +91,7 @@
                     "link":"https://github.com/gsuzeda/FlappyCorona"
                 },
                 {
-                    "image": "/assets/sed.png",
+                    "image": "/assets/portifolio/sed.png",
                     "title": "App de Conteúdos Didáticos",
                     "category": "Educação / Acessibilidade",
                     "description": "Aplicativo em Flutter integrando conteúdos educacionais e promovendo acesso à tecnologia para estudantes com infraestrutura limitada.",
