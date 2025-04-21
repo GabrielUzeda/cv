@@ -78,29 +78,45 @@ function initializeApp() {
         });
     });
 
-    // Animação para itens da timeline
-    function animateTimelineItems() {
-        const items = gsap.utils.toArray(".timeline-item");
-        const isMobile = window.innerWidth <= 1024; // Verifica se é a visão de timeline linear
-
-        items.forEach((item, i) => {
-            const initialX = isMobile ? -30 : (i % 2 === 0 ? 30 : -30); // Define X inicial baseado na posição par/impar ou mobile
-
-             gsap.fromTo(item,
-               { opacity: 0, x: initialX }, // Estado inicial
-               {                  // Estado final
+  // Ajuste na função animateTimelineItems
+function animateTimelineItems() {
+    const items = gsap.utils.toArray(".timeline-item");
+    const isMobile = window.innerWidth <= 768; // Detecta se é mobile
+    
+    // Ensure only one timeline line is visible
+    const timelineLine = document.querySelector('.timeline-line');
+    if (timelineLine) {
+        gsap.set(timelineLine, {
+            clearProps: 'all' // Clear any previous GSAP properties
+        });
+    }
+    
+    items.forEach((item, i) => {
+        // No mobile, animamos de cima para baixo
+        const initialTransform = isMobile ? 
+            { opacity: 0, y: 20 } : // Mobile: animação vertical
+            { opacity: 0, x: (i % 2 === 0 ? 30 : -30) }; // Desktop: horizontal alternado
+        
+        // Propriedade de destino da animação
+        const finalTransform = isMobile ? 
+            { opacity: 1, y: 0 } : // Mobile: y=0
+            { opacity: 1, x: 0 }; // Desktop: x=0
+        
+        gsap.fromTo(item,
+            initialTransform,
+            {
                 scrollTrigger: {
                     trigger: item,
                     start: "top 85%",
                     once: true
                 },
-                opacity: 1,
-                x: 0,
+                ...finalTransform,
                 duration: 0.7,
                 ease: "back.out(1.2)",
-                delay: 0.1 // Delay menor pode parecer mais fluido
-            });
-        });
+                delay: i * 0.1
+            }
+        );
+    });
     }
     animateTimelineItems(); // Executa na carga inicial
 
