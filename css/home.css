@@ -551,6 +551,11 @@ section {
     .author-info p {
         font-size: 0.85rem;
     }
+
+    #portfolio-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -572,11 +577,18 @@ section {
 /* Portfolio Section */
 #portfolio-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
     padding: 1.5rem 0;
     width: 100%;
     margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+@media (min-width: 1200px) {
+    #portfolio-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+    }
 }
 
 .portfolio-item {
@@ -692,6 +704,16 @@ section {
     border-radius: 15px;
 }
 
+/* Lazy Load */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
 /* Footer */
 footer {
     background-color: rgba(0, 0, 0, 0.8);
@@ -712,7 +734,6 @@ footer {
 }
 
 .footer-info {
-    max-width: 350px;
     flex-basis: 350px; /* Base para flexbox */
     flex-grow: 1; /* Permitir crescer */
 }
@@ -796,7 +817,7 @@ footer {
     color: #a1a1a6;
     text-decoration: none;
     transition: var(--transition);
-    font-size: 0.95rem; /* Ajuste de tamanho */
+    font-size: 0.95rem;
 }
 
 .footer-column ul li a:hover {
@@ -1204,12 +1225,5 @@ footer {
     #portfolio-container {
         grid-template-columns: repeat(3, 1fr);
         max-width: 1200px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-    #portfolio-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
     }
 }
