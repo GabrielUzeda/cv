@@ -50,6 +50,15 @@ function initializeApp() {
     // Inicializar a animação GSAP
     gsap.registerPlugin(ScrollTrigger);
 
+    // Header animation
+    gsap.to("#header", {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: "power3.out",
+        delay: 0,
+    });
+
     // Animação de entrada para a seção Hero
     gsap.set(".hero-content", {
         opacity: 0,
@@ -61,7 +70,7 @@ function initializeApp() {
         y: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 0.3
+        delay: 0.8
     });
 
     // Animação para seções ao scrollar
