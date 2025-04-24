@@ -759,6 +759,10 @@ section:not(.hero) {
     
 }
 
+.hero-content{
+    opacity: 0;
+}
+
 .portfolio-image {
     height: 220px;
     position: relative;

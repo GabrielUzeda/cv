@@ -59,11 +59,6 @@ function initializeApp() {
         delay: 0,
     });
 
-    // Animação de entrada para a seção Hero
-    gsap.set(".hero-content", {
-        opacity: 0,
-        y: 30
-    });
 
     gsap.to(".hero-content", {
         opacity: 1,
