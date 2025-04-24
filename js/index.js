@@ -21,7 +21,9 @@ function handlePieceDrop(target, draggable) {
 
             // Segundo setTimeout com a animação de conclusão
             setTimeout(() => {
-                $('.puzzle-container').addClass("completion-animation");
+                $('#instrucao').animate({ opacity: 0, height: 0, margin: 0, padding: 0 }, 300, function() {
+                    $(this).fadeOut();
+                });                $('.puzzle-container').addClass("completion-animation");
                 setTimeout(resolve, 3000);
             }, 300);
         }, 300);

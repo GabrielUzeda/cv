@@ -82,7 +82,7 @@ function initializeApp() {
                 trigger: section,
                 start: "top 85%", // Quando o topo da seção atinge 85% da altura da viewport
                 end: "bottom 20%", // Opcional: define um fim para a animação/trigger
-                // toggleActions: "play none none none", // Ação padrão: anima ao entrar
+                toggleActions: "play none none none", // Ação padrão: anima ao entrar
                 once: true // Anima apenas uma vez
             },
             opacity: 1,
