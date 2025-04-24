@@ -259,10 +259,10 @@ function animateTimelineItems() {
             if (link.endsWith('.mp4')) {
                 // Criar um modal para exibir o vídeo
                 const videoModal = $(`
-                    <div class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000;">
-                        <div style="position:relative; width:80%; max-width:800px; margin:50px auto;">
-                            <button class="close-modal" style="position:absolute; right:-40px; top:-40px; background:none; border:none; color:white; font-size:30px; cursor:pointer;">&times;</button>
-                            <video controls style="width:100%; border-radius:8px;">
+                    <div class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:1000; overflow:auto;">
+                        <div class="modal-content" style="position:relative; width:90vw; max-width:600px; margin:8vh auto; background:none; padding:0;">
+                            <button class="close-modal" style="position:absolute; right:16px; top:16px; background:none; border:none; color:white; font-size:32px; cursor:pointer; z-index:1010;">&times;</button>
+                            <video controls style="width:100%; border-radius:8px; max-height:70vh; background:#111;">
                                 <source src="${link}" type="video/mp4">
                                 Seu navegador não suporta o elemento de vídeo.
                             </video>
@@ -296,10 +296,10 @@ function animateTimelineItems() {
             else if (link.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
                 // Criar um modal para exibir a imagem
                 const imageModal = $(`
-                    <div class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000;">
-                        <div style="position:relative; width:90%; max-width:1200px; margin:50px auto; text-align:center;">
-                            <button class="close-modal" style="position:absolute; right:-40px; top:-40px; background:none; border:none; color:white; font-size:30px; cursor:pointer;">&times;</button>
-                            <img src="${link}" alt="Imagem do projeto" style="max-width:100%; max-height:80vh; border-radius:8px;">
+                    <div class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:1000; overflow:auto;">
+                        <div class="modal-content" style="position:relative; width:96vw; max-width:900px; margin:6vh auto; background:none; padding:0; text-align:center;">
+                            <button class="close-modal" style="position:absolute; right:16px; top:16px; background:none; border:none; color:white; font-size:32px; cursor:pointer; z-index:1010;">&times;</button>
+                            <img src="${link}" alt="Imagem do projeto" style="max-width:100%; max-height:70vh; border-radius:8px; background:#111;">
                         </div>
                     </div>
                 `);
