@@ -42,6 +42,13 @@
         "recommendations": {
             "items": [
                 {
+                    "content": "Trabalhei com o Gabriel Uzeda durante quase 3 anos, tanto no tempo em que foi bolsista pela FUNAPE quanto prestador de serviço. O acompanhei em vários projetos e posso dizer que ele é um profissional extremamente dedicado, competente, que gosta bastante de desafios e os cumpre com excelência, qualidade e rapidez. É bastante focado, trabalha bem sob pressão, é bom de equipe e gosta sempre de ajudar os seus companheiros. Recomendo o Gabriel Uzeda.",
+                    "author": {
+                        "image": "/assets/recomendacoes/rodrigokaji.jpeg",
+                        "name": "Rodrigo Damasceno Kaj",
+                        "position": "Chefe da equipe de Desenvolvimento de Sistemas da FUNAPE"
+                    }
+                },{
                     "content": "Tive o privilégio de trabalhar com Uzeda em um projeto onde, apesar do tempo curto, aprendi mais do que poderia imaginar. Ele é um profissional extremamente competente, dedicado e sempre muito solícito. Durante o tempo em que trabalhamos juntos, ele me ajudou a entender o funcionamento do projeto, me explicou decisões técnicas importantes e sempre esteve disponível para tirar dúvidas. Ao mesmo tempo, demonstrou muita paciência e cuidado ao ensinar. Sua combinação de conhecimento técnico e disposição para compartilhar esse conhecimento foi essencial para o meu desenvolvimento naquele período. Recomendo fortemente o trabalho do Uzeda — ele é uma referência tanto tecnicamente quanto como colega de equipe.",
                     "author": {
                         "image": "/assets/recomendacoes/anderson.jpeg",
